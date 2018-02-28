@@ -1,3 +1,5 @@
+// Packages
+const webpack = require('webpack');
 // Native
 const {join} = require('path');
 
@@ -5,21 +7,16 @@ module.exports = {
   entry: './lib/index.js',
   output: {
     path: join(__dirname, '/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['react']
-          }
-        }
+        loader: 'babel-loader'
       }
     ]
   },
-  target: 'electron'
+  target: 'electron-renderer'
 };
