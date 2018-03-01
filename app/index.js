@@ -14,6 +14,7 @@ let win = null;
 try {
   require('electron-reloader')(module);
 } catch (err) {
+  /*eslint-disable*/
   console.log(err);
 }
 
