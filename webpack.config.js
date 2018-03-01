@@ -1,5 +1,3 @@
-// Packages
-const webpack = require('webpack');
 // Native
 const {join} = require('path');
 
