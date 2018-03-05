@@ -1,12 +1,14 @@
 // Packages
 const {app, BrowserWindow} = require('electron');
-const logger = require('electron-timber');
+const {ipcMain} = require('electron');
+const loger = require('electron-timber');
 
 const browserOptions = {
   titleBarStyle: 'hiddenInset',
   backgroundColor: '#000000',
   minWidth: 505,
-  minHeight: 232
+  minHeight: 232,
+  show: false
 };
 
 let win = null;
@@ -14,12 +16,21 @@ let win = null;
 try {
   require('electron-reloader')(module);
 } catch (err) {
-  /*eslint-disable*/
-  console.log(err);
+  throw err;
 }
 
 app.on('ready', () => {
   win = new BrowserWindow(browserOptions);
-  logger.log('Running main processes');
+  win.once('ready-to-show', () => {
+    win.show();
+  });
+  ipcMain.on('max-window', (event, args) => {
+    if (win.isMaximized()) {
+      win.unmaximize();
+    } else {
+      win.maximize();
+    }
+  });
+  loger.log('Running main process...');
   win.loadURL(`file://${__dirname}/index.html`);
 });
