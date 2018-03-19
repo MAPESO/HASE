@@ -14,9 +14,7 @@ NPM
 npm install
 ```
 
-please run `yarn dev` in one tab and then `yarn app` in another one :)
-
-
+please run `yarn dev`
 ## Authors
 
 - Markoz Peña Mendez ([@markdrew53](https://twitter.com/markdrew53)) - code 
